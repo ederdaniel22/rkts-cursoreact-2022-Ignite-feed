@@ -1,14 +1,11 @@
+import { format } from "date-fns";
+
 import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 
 export function Post({ author, publishedAt }) {
-  const publishedDateFormatted = new Intl.DateTimeFormat("pt-BR", {
-    day: "2-digit",
-    month: "long",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(publishedAt);
+  const publishedDateFormatted = format(publishedAt, "11 de junho às 17:57h");
 
   return (
     <article className={styles.post}>
@@ -21,7 +18,7 @@ export function Post({ author, publishedAt }) {
           </div>
         </div>
 
-        <time title="11 de junho às 17:57h" dateTime="2022-11-15">
+        <time title="" dateTime="2022-11-15">
           {publishedDateFormatted}
         </time>
       </header>
