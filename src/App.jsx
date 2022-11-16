@@ -25,12 +25,12 @@ const posts = [
 
       { type: "link", content: "eder.design/doctorcare" },
     ],
-    publishedAt: new Date("2022-06-20 17:22:00"),
+    publishedAt: new Date("2022-11-16 17:22:00"),
   },
   {
     id: 2,
     author: {
-      avatarUrl: "https://github.com/ederdaniel22.png",
+      avatarUrl: "https://github.com/KarolineDD.png",
       name: "Karoline Dambros Domingues",
       role: "Web Development Student",
     },
@@ -43,9 +43,9 @@ const posts = [
           "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é octorCare🚀",
       },
 
-      { type: "link", content: "eder.design/doctorcare" },
+      { type: "link", content: "karoline.design/doctorcare" },
     ],
-    publishedAt: new Date("2022-06-14 17:22:00"),
+    publishedAt: new Date("2022-11-15 17:22:00"),
   },
 ];
 
