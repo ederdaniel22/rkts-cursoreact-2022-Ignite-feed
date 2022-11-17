@@ -1,12 +1,23 @@
-import { format } from "date-fns";
+import { format, formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 
 import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
+
 import styles from "./Post.module.css";
 
-export function Post({ author, publishedAt }) {
-  const publishedDateFormatted = format(publishedAt, "11 de junho às 17:57h");
-
+export function Post({ author, publishedAt, content }) {
+  const publishedDateFormatted = format(
+    publishedAt,
+    "d 'de' LLLL 'às' HH:mm'h'",
+    {
+      locale: ptBR,
+    }
+  );
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  });
   return (
     <article className={styles.post}>
       <header>
@@ -18,24 +29,26 @@ export function Post({ author, publishedAt }) {
           </div>
         </div>
 
-        <time title="" dateTime="2022-11-15">
-          {publishedDateFormatted}
+        <time
+          title={publishedDateFormatted}
+          dateTime={publishedAt.toISOString()}
+        >
+          {publishedDateRelativeToNow}
         </time>
       </header>
 
       <div className={styles.content}>
-        <p>Fala Galera</p>
-        <p>
-          Acabei de subir mais um projeto no meu portfólio. Faz parte do curso
-          de React da Rocketseat
-        </p>
-        <p>
-          👉 <a href=""> ederdaniel22/IgniteFeed</a>
-        </p>
-        <p>
-          <a href=""> #novoprojeto </a> <a href=""> #ignite</a>{" "}
-          <a href="">#rocketseat</a>
-        </p>
+        {content.map((line) => {
+          if (line.type === "paragraph") {
+            return <p>{line.content}</p>;
+          } else if (line.type === "link") {
+            return (
+              <p>
+                <a href="#">{line.content}</a>{" "}
+              </p>
+            );
+          }
+        })}
       </div>
 
       <form className={styles.commentForm}>
